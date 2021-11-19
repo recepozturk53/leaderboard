@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:leaderboard/scheduled_order_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -95,6 +96,7 @@ class _MainPageState extends State<MainPage> {
                                 dimension:
                                     MediaQuery.of(context).size.width * .16,
                                 child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
                                   imageUrl:
                                       "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80",
                                   placeholder: (context, url) =>
@@ -103,7 +105,7 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       CircleAvatar(
-                                    radius: 32,
+                                    radius: 28,
                                     backgroundColor: const Color(0xFF0F172A),
                                     child: LayoutBuilder(
                                       builder: (context, constraint) => Icon(
@@ -151,6 +153,7 @@ class _MainPageState extends State<MainPage> {
                                 dimension:
                                     MediaQuery.of(context).size.width * .16,
                                 child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
                                   imageUrl:
                                       "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80",
                                   placeholder: (context, url) =>
@@ -159,7 +162,7 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       CircleAvatar(
-                                    radius: 32,
+                                    radius: 28,
                                     backgroundColor: const Color(0xFF0F172A),
                                     child: LayoutBuilder(
                                       builder: (context, constraint) => Icon(
@@ -210,6 +213,7 @@ class _MainPageState extends State<MainPage> {
                                 dimension:
                                     MediaQuery.of(context).size.width * .16,
                                 child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
                                   imageUrl:
                                       "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80",
                                   placeholder: (context, url) =>
@@ -218,7 +222,7 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       CircleAvatar(
-                                    radius: 32,
+                                    radius: 28,
                                     backgroundColor: const Color(0xFF0F172A),
                                     child: LayoutBuilder(
                                       builder: (context, constraint) => Icon(
@@ -277,21 +281,30 @@ class _MainPageState extends State<MainPage> {
                     size: 36.0,
                     color: Colors.white,
                   ),
-                  Container(
-                    height: 36.0,
-                    width: 150.0,
-                    decoration: ShapeDecoration(
-                      shape: StadiumBorder(),
-                      color: Color.fromRGBO(1, 183, 255, 1),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ScheduledOrderPage(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 36.0,
+                      width: 150.0,
+                      decoration: ShapeDecoration(
+                        shape: StadiumBorder(),
+                        color: Color.fromRGBO(1, 183, 255, 1),
+                      ),
+                      child: Center(
+                          child: Text(
+                        "Go on",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.w600),
+                      )),
                     ),
-                    child: Center(
-                        child: Text(
-                      "Go on",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w600),
-                    )),
                   ),
                   Icon(
                     Icons.account_circle,
@@ -309,6 +322,12 @@ class _MainPageState extends State<MainPage> {
 
   Widget currenciesCard(BuildContext context, int index) {
     return Card(
+        shape: index == 5
+            ? RoundedRectangleBorder(
+                side: BorderSide(color: Colors.greenAccent, width: 1),
+                borderRadius: BorderRadius.circular(10),
+              )
+            : null,
         color: Colors.white,
         child: Container(
           height: 50,
@@ -340,7 +359,7 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
                 Text(
-                  "John Wick",
+                  index == 5 ? "Yourself" : "John Wick",
                   style: TextStyle(color: Colors.white),
                 ),
                 Text(
@@ -361,13 +380,14 @@ class _MainPageState extends State<MainPage> {
         child: SizedBox.square(
           dimension: MediaQuery.of(context).size.width * .16,
           child: CachedNetworkImage(
+            fit: BoxFit.cover,
             imageUrl:
                 "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80",
             placeholder: (context, url) => const CircularProgressIndicator(
               color: Color(0xFF0F172A),
             ),
             errorWidget: (context, url, error) => CircleAvatar(
-              radius: 32,
+              radius: 28,
               backgroundColor: const Color(0xFF0F172A),
               child: LayoutBuilder(
                 builder: (context, constraint) => Icon(
